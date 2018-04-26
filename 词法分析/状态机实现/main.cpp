@@ -56,16 +56,22 @@ void init()
         relations.push_back(relation);
     }
 
+    // cout << "vector size: " << relations.size() << endl;
+
     // 字母和数字对目标状态2进行映射
     for(int i = 0; i < relations.size(); i++) {
+        // cout << i << " " << relations[i].state << " " << relations[i].ch << endl;
         mp[relations[i]] = 2;
     }
 
     // test output
+    /*
     map<Relation, int>::iterator p;
+    cout << "map size: " << mp.size() << endl;
     for(p = mp.begin(); p != mp.end(); p++) {
         cout << "map output: " << (p -> first).state << " " << (p -> first).ch << " " << p -> second << endl;
     }
+    */
 
     // 当map映射的对象的目标值为0，即未设定目标状态，此状态为接受状态3
 
@@ -88,10 +94,10 @@ void recognize(string str)
     char curCh = str[i];
 
     // test
-    Relation tp;
-    tp.state = 2;
-    tp.ch = '=';
-    cout << "test: " << mp[tp] << endl;
+    Relation test;
+    test.state = 1;
+    test.ch = '1';
+    cout << "test: " << mp[test] << endl;
 
     // 当前状态不是接受状态时可以执行循环 false时可执行
     while(!isAccept[state] && i < str.length()) {
