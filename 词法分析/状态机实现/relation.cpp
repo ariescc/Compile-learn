@@ -8,5 +8,10 @@ Relation::Relation(int state, char ch) {
 }
 
 bool Relation::operator < (const Relation& r) const {
-    return this -> state < r.state;
+    if(this -> ch == r.ch) {
+        return (this -> ch + this -> state) < (r.ch + r.state);
+    }
+    else {
+        return this -> ch < r.ch;
+    }
 }
