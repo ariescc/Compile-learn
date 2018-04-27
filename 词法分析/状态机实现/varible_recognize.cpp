@@ -3,6 +3,9 @@
 #include <vector>
 #include "relation.h"
 
+#define LETTER_NUM 26
+#define DIGIT_NUM 10
+
 using namespace std;
 
 std::string lower_letter_list = "abcdefghijklmnopqrstuvwxyz";
@@ -120,7 +123,7 @@ void recognize(string str)
     }
 
     res = str.substr(0, i);
-    cout << "String output: " << res << endl;
+    cout << " String output: " << res << endl;
 }
 
 int main()

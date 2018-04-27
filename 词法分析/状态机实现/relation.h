@@ -1,8 +1,3 @@
-#include <string>
-
-#define LETTER_NUM 26
-#define DIGIT_NUM 10
-
 class Relation {
     public:
         int state;
