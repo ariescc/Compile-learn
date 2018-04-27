@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+/词法分析/词法分析实现/compile-kyle/.vs
+/词法分析/词法分析实现/compile-kyle/Debug
+/词法分析/词法分析实现/compile-kyle/compile-kyle/Debug
