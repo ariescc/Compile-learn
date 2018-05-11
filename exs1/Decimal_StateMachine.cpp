@@ -2,6 +2,9 @@
 
 Decimal_StateMachine::Decimal_StateMachine() {}
 
+/**
+    状态机初始化
+*/
 void Decimal_StateMachine::init()
 {
     // 确定接受状态
@@ -105,6 +108,10 @@ void Decimal_StateMachine::init()
     */
 }
 
+/**
+    浮点数状态机解析浮点数
+    @params str 要解析的字符串
+*/
 Result Decimal_StateMachine::decimal_recognize(std::string str)
 {
     int state = 1;
@@ -114,10 +121,6 @@ Result Decimal_StateMachine::decimal_recognize(std::string str)
 
 	while (!isAccept[state] && i < str.length())
 	{
-
-		//std::cout << "state: " << state << std::endl;
-		//std::cout << "char: " << curCh << std::endl;
-
 		Relation relation;
 
 		relation.state = state;

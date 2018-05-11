@@ -2,7 +2,9 @@
 
 Identifier_StateMachine::Identifier_StateMachine() {}
 
-
+/**
+    Identifier状态机初始化
+*/
 void Identifier_StateMachine::init()
 {
 
@@ -106,7 +108,9 @@ void Identifier_StateMachine::init()
 	*/
 }
 
-
+/**
+    Identifier状态机解析
+*/
 Result Identifier_StateMachine::identifier_recognize(std::string str)
 {
 	int state = 1;
@@ -116,9 +120,6 @@ Result Identifier_StateMachine::identifier_recognize(std::string str)
 
 	while (!isAccept[state] && i < str.length())
 	{
-
-		//std::cout << "state: " << state << std::endl;
-		//std::cout << "char: " << curCh << std::endl;
 
 		Relation relation;
 

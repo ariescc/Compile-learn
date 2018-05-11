@@ -2,6 +2,9 @@
 
 symbols_StateMachine::symbols_StateMachine() {}
 
+/**
+    (¶à×Ö·û)·ûºÅ×´Ì¬»ú³õÊ¼»¯
+*/
 void symbols_StateMachine::init()
 {
     /*
@@ -152,7 +155,7 @@ Result symbols_StateMachine::public_recognize(std::map<int, bool>& isaccept, std
 	else
 	{
 	    output.str_len = i;
-		output.ID = VARIABLE_STATEMACHINE;
+		output.ID = SYMBOLS_STATEMACHINE;
 		output.opt_str = res;
 	}
 
