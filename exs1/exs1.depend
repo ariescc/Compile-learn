@@ -1,0 +1,61 @@
+# depslib dependency file v1.0
+1525965633 source:q:\ariescc\compile-learn\exs1\identifier_statemachine.cpp
+	"Identifier_stateMachine.h"
+
+1525952921 q:\ariescc\compile-learn\exs1\identifier_statemachine.h
+	"StateMachine.h"
+
+1525955965 q:\ariescc\compile-learn\exs1\statemachine.h
+	"relation.h"
+	"resource.h"
+
+1525952650 q:\ariescc\compile-learn\exs1\relation.h
+
+1525963968 q:\ariescc\compile-learn\exs1\resource.h
+	"relation.h"
+	"result.h"
+	<stdio.h>
+	<iostream>
+	<string>
+	<map>
+	<set>
+	<vector>
+
+1525964072 q:\ariescc\compile-learn\exs1\result.h
+	<string>
+
+1525952668 source:q:\ariescc\compile-learn\exs1\relation.cpp
+	"relation.h"
+
+1525952880 source:q:\ariescc\compile-learn\exs1\resource.cpp
+
+1525952749 source:q:\ariescc\compile-learn\exs1\result.cpp
+	"result.h"
+
+1525955809 source:q:\ariescc\compile-learn\exs1\statemachine.cpp
+	"StateMachine.h"
+
+1526035282 source:q:\ariescc\compile-learn\exs1\main.cpp
+	"Identifier_stateMachine.h"
+	"keywords_stateMachine.h"
+	"symbols_stateMachine.h"
+	"Decimal_StateMachine.h"
+
+1525964872 source:q:\ariescc\compile-learn\exs1\keywords_statemachine.cpp
+	"keywords_stateMachine.h"
+
+1525957337 q:\ariescc\compile-learn\exs1\keywords_statemachine.h
+	"StateMachine.h"
+
+1526036135 source:q:\ariescc\compile-learn\exs1\symbols_statemachine.cpp
+	"symbols_stateMachine.h"
+
+1526035465 q:\ariescc\compile-learn\exs1\symbols_statemachine.h
+	"StateMachine.h"
+
+1525965643 source:q:\ariescc\compile-learn\exs1\decimal_statemachine.cpp
+	"Decimal_StateMachine.h"
+
+1525962061 q:\ariescc\compile-learn\exs1\decimal_statemachine.h
+	"StateMachine.h"
+
