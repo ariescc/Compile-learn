@@ -11,10 +11,12 @@ void keywords_StateMachine::init()
 
 /**
     关键字解析
+    如果经Identifier状态机解析得到的单词是关键字，则关键字状态机解析成功
+    @params str 经Identifier状态机解析得到的单词
 */
 Result keywords_StateMachine::keywords_recognize(std::string str)
 {
-    Result result;
+    /*Result result;
     if (key_words.count(str) > 0)
     {
         result.str_len = str.length();
@@ -27,5 +29,26 @@ Result keywords_StateMachine::keywords_recognize(std::string str)
         result.ID = -1;
         result.opt_str = "Illegal string!";
     }
+    return result;
+    */
+
+    Result result;
+
+    // 判断Identifier解析得到的单词
+    if (key_words.count(str) > 0)
+    {
+        // 解析得到的是关键字
+        result.ID = KEYWORDS_STATEMACHINE;
+        result.opt_str = str;
+        result.str_len = str.length();
+    }
+    else
+    {
+        // 如果不是关键字，就一定是Identifier
+        result.ID = IDENTIFIER_STATEMACHINE;
+        result.opt_str = str;
+        result.str_len = str.length();
+    }
+
     return result;
 }
