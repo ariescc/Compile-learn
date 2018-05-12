@@ -104,25 +104,62 @@ void symbols_StateMachine::init()
     :
     ===========================================================================================
     */
+    isAccept5[1] = false;
+    isAccept5[2] = false;
+    isAccept5[3] = true;
 
+    Relation r5_1;
+    r5_1.state = 1;
+    r5_1.ch = ':';
 
-    /*
-    ===========================================================================================
-    {
-    ===========================================================================================
-    */
+    sym5[r5_1] = 2;
 
-    /*
-    ===========================================================================================
-    }
-    ===========================================================================================
-    */
 
     /*
     ===========================================================================================
     ;
     ===========================================================================================
     */
+    isAccept6[1] = false;
+    isAccept6[2] = false;
+    isAccept6[3] = true;
+
+    Relation r6_1;
+    r6_1.state = 1;
+    r6_1.ch = ';';
+
+    sym6[r6_1] = 2;
+
+    /*
+    ===========================================================================================
+    {
+    ===========================================================================================
+    */
+    isAccept7[1] = false;
+    isAccept7[2] = false;
+    isAccept7[3] = true;
+
+    Relation r7_1;
+    r7_1.state = 1;
+    r7_1.ch = '{';
+
+    sym7[r7_1] = 2;
+
+
+    /*
+    ===========================================================================================
+    }
+    ===========================================================================================
+    */
+    isAccept8[1] = false;
+    isAccept8[2] = false;
+    isAccept8[3] = true;
+
+    Relation r8_1;
+    r8_1.state = 1;
+    r8_1.ch = '}';
+
+    sym8[r8_1] = 2;
 
     /*
     std::map<Relation, int>::iterator p;
@@ -174,7 +211,7 @@ Result symbols_StateMachine::public_recognize(std::map<int, bool>& isaccept, std
 	Result output;
 	if (!i)
 	{
-	    output.str_len = -1;
+	    output.str_len = 1;
 		output.ID = -1;
 		output.opt_str = "Illegal string!";
 	}
@@ -206,9 +243,9 @@ Result symbols_StateMachine::symbols_recognize_set(std::string str)
     }
     else
     {
-        output.str_len = -1;
-        output.ID = -1;
-        output.opt_str = "Illegal String !";
+        output.str_len = 1;
+        output.ID = ILLEGAL_STRING;
+        output.opt_str = str[0];
     }
     return output;
 }
@@ -243,6 +280,22 @@ Result symbols_StateMachine::symbols_recognize(std::string str)
     // -> ×´Ì¬»ú
     Result res4 = public_recognize(isAccept4, sym4, str);
     results.push_back(res4);
+
+    // : ×´Ì¬»ú
+    Result res5 = public_recognize(isAccept5, sym5, str);
+    results.push_back(res5);
+
+    // ; ×´Ì¬»ú
+    Result res6 = public_recognize(isAccept6, sym6, str);
+    results.push_back(res6);
+
+    // { ×´Ì¬»ú
+    Result res7 = public_recognize(isAccept7, sym7, str);
+    results.push_back(res7);
+
+    // } ×´Ì¬»ú
+    Result res8 = public_recognize(isAccept8, sym8, str);
+    results.push_back(res8);
 
     /*
     ========================================================================================================================
