@@ -6,6 +6,30 @@
 
 /**
 ================================================================================================================================
+    字符串分割函数实现
+================================================================================================================================
+*/
+std::vector<std::string> SplitString(const std::string& s, const std::string& c)
+{
+    std::vector<std::string> v;
+    std::string::size_type pos1, pos2;
+    pos2 = s.find(c);
+    pos1 = 0;
+    while(std::string::npos != pos2)
+    {
+    v.push_back(s.substr(pos1, pos2-pos1));
+
+    pos1 = pos2 + c.size();
+    pos2 = s.find(c, pos1);
+    }
+    if(pos1 != s.length())
+    v.push_back(s.substr(pos1));
+
+    return v;
+}
+
+/**
+================================================================================================================================
 状态机实例化
 ================================================================================================================================
 */
@@ -60,105 +84,121 @@ void print(int id, std::string res_str)
 int main()
 {
     #ifdef LOCAL
-    freopen("test1.txt", "r", stdin);
-    freopen("out.txt", "w", stdout);
+    freopen("test3.txt", "r", stdin);
+    freopen("out3.txt", "w", stdout);
     #endif // LOCAL
 
 	initialize();
 
 	std::string input;
 
-	while(std::cin >> input) {
-
-        //std::cout << "line " << line << " >> " << std::endl;
-
+	while(getline(std::cin, input)) {
         // 代码行数处理
+        std::cout << "line " << line++ << " >> " << std::endl;
 
-
-        std::cout << "Current Input: " << input << std::endl;
-
-        // int a=b
-        // 获得 a=b 字符串，需要将此字符串解析到为0为止，或者所有的状态机都无法解析为止
-        while (true)
+        // 清除头部空格
+        int c_index = 0;
+        while (input[c_index] == ' ' || input[c_index] == '\t')
         {
-            std::cout << "input: " << input << std::endl;
-
-            Result output;
-            // 关键字解析
-            output = keywords_statemachine.keywords_recognize(input);
-            if (output.ID != -1) {
-                print(output.ID, output.opt_str);
-                // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
-                if (output.str_len < input.length())
-                {
-                    input = input.substr(output.str_len);
-                    continue;
-                }
-                else
-                {
-                    // 此字符串已经完全解析了
-                    break;
-                }
-            }
-
-            // 符号解析
-            output = symbols_statemachine.symbols_recognize(input);
-            if (output.ID != -1) {
-                print(output.ID, output.opt_str);
-                // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
-                if (output.str_len < input.length())
-                {
-                    input = input.substr(output.str_len);
-                    continue;
-                }
-                else
-                {
-                    // 此字符串已经完全解析了
-                    break;
-                }
-            }
-
-            // 浮点数解析
-            output = decimal_statemachine.decimal_recognize(input);
-            if(output.ID != -1)
-            {
-                print(output.ID, output.opt_str);
-                // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
-                if (output.str_len < input.length())
-                {
-                    input = input.substr(output.str_len);
-                    continue;
-                }
-                else
-                {
-                    // 此字符串已经完全解析了
-                    break;
-                }
-            }
-
-            // 调用Identifier分析
-            output = identifier_statemachine.identifier_recognize(input);
-            if (output.ID != -1) {
-                print(output.ID, output.opt_str);
-                // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
-                if (output.str_len < input.length())
-                {
-                    input = input.substr(output.str_len);
-                    continue;
-                }
-                else
-                {
-                    // 此字符串已经完全解析了
-                    break;
-                }
-            }
-            else{
-                // 所有状态机都无法解析了，则停止对当前字符串的解析，继续读取
-                print(output.ID, output.opt_str);
-                break;
-            }
-
+            c_index++;
         }
+        input = input.substr(c_index);
+
+        //std::cout << "Current Input: " << input << std::endl;
+
+        // 使用空格分割每一行字符串
+        std::vector<std::string> inputs = SplitString(input, " ");
+
+        for (int t = 0; t < inputs.size(); t++)
+        {
+            std::string input_cur = inputs[t];
+
+            //std::cout << input_cur << std::endl;
+
+            // int a=b
+            // 获得 a=b 字符串，需要将此字符串解析到为0为止，或者所有的状态机都无法解析为止
+            while (true)
+            {
+                std::cout << "input: " << input_cur << std::endl;
+
+                Result output;
+                // 关键字解析
+                output = keywords_statemachine.keywords_recognize(input_cur);
+                if (output.ID != -1) {
+                    print(output.ID, output.opt_str);
+                    // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
+                    if (output.str_len < input_cur.length())
+                    {
+                        input_cur = input_cur.substr(output.str_len);
+                        continue;
+                    }
+                    else
+                    {
+                        // 此字符串已经完全解析了
+                        break;
+                    }
+                }
+
+                // 符号解析
+                output = symbols_statemachine.symbols_recognize(input_cur);
+                if (output.ID != -1) {
+                    print(output.ID, output.opt_str);
+                    // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
+                    if (output.str_len < input_cur.length())
+                    {
+                        input_cur = input_cur.substr(output.str_len);
+                        continue;
+                    }
+                    else
+                    {
+                        // 此字符串已经完全解析了
+                        break;
+                    }
+                }
+
+                // 浮点数解析
+                output = decimal_statemachine.decimal_recognize(input_cur);
+                if(output.ID != -1)
+                {
+                    print(output.ID, output.opt_str);
+                    // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
+                    if (output.str_len < input_cur.length())
+                    {
+                        input_cur = input_cur.substr(output.str_len);
+                        continue;
+                    }
+                    else
+                    {
+                        // 此字符串已经完全解析了
+                        break;
+                    }
+                }
+
+                // 调用Identifier分析
+                output = identifier_statemachine.identifier_recognize(input_cur);
+                if (output.ID != -1) {
+                    print(output.ID, output.opt_str);
+                    // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
+                    if (output.str_len < input_cur.length())
+                    {
+                        input_cur = input_cur.substr(output.str_len);
+                        continue;
+                    }
+                    else
+                    {
+                        // 此字符串已经完全解析了
+                        break;
+                    }
+                }
+                else{
+                    // 所有状态机都无法解析了，则停止对当前字符串的解析，继续读取
+                    print(output.ID, output.opt_str);
+                    break;
+                }
+
+            }
+        }
+
 
 	}
 
