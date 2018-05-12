@@ -84,8 +84,8 @@ void print(int id, std::string res_str)
 int main()
 {
     #ifdef LOCAL
-    freopen("test3.txt", "r", stdin);
-    freopen("out3.txt", "w", stdout);
+    freopen("test1.txt", "r", stdin);
+    freopen("out1.txt", "w", stdout);
     #endif // LOCAL
 
 	initialize();
@@ -122,10 +122,17 @@ int main()
                 std::cout << "input: " << input_cur << std::endl;
 
                 Result output;
-                // 关键字解析
-                output = keywords_statemachine.keywords_recognize(input_cur);
-                if (output.ID != -1) {
+
+                // Identifier解析
+                output = identifier_statemachine.identifier_recognize(input_cur);
+                if (output.ID != ILLEGAL_STRING)
+                {
+                    std::string word = output.opt_str;
+
+                    // 判断Identifier解析出的单词是关键字还是Identifier
+                    output = keywords_statemachine.keywords_recognize(word);
                     print(output.ID, output.opt_str);
+
                     // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
                     if (output.str_len < input_cur.length())
                     {
@@ -141,7 +148,7 @@ int main()
 
                 // 符号解析
                 output = symbols_statemachine.symbols_recognize(input_cur);
-                if (output.ID != -1) {
+                if (output.ID != ILLEGAL_STRING) {
                     print(output.ID, output.opt_str);
                     // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
                     if (output.str_len < input_cur.length())
@@ -158,25 +165,8 @@ int main()
 
                 // 浮点数解析
                 output = decimal_statemachine.decimal_recognize(input_cur);
-                if(output.ID != -1)
+                if(output.ID != ILLEGAL_STRING)
                 {
-                    print(output.ID, output.opt_str);
-                    // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
-                    if (output.str_len < input_cur.length())
-                    {
-                        input_cur = input_cur.substr(output.str_len);
-                        continue;
-                    }
-                    else
-                    {
-                        // 此字符串已经完全解析了
-                        break;
-                    }
-                }
-
-                // 调用Identifier分析
-                output = identifier_statemachine.identifier_recognize(input_cur);
-                if (output.ID != -1) {
                     print(output.ID, output.opt_str);
                     // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
                     if (output.str_len < input_cur.length())
@@ -193,7 +183,15 @@ int main()
                 else{
                     // 所有状态机都无法解析了，则停止对当前字符串的解析，继续读取
                     print(output.ID, output.opt_str);
-                    break;
+                    if (output.str_len < input_cur.length())
+                    {
+                        input_cur = input_cur.substr(output.str_len);
+                        continue;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
 
             }
