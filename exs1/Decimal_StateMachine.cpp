@@ -142,9 +142,10 @@ Result Decimal_StateMachine::decimal_recognize(std::string str)
 	Result output;
 	if (!i)
 	{
-	    output.str_len = -1;
-		output.ID = -1;
-		output.opt_str = "Illegal string!";
+	    // ½ØµôÒ»¸ö´íÎó×Ö·û
+	    output.str_len = 1;
+		output.ID = ILLEGAL_STRING;
+		output.opt_str = str[0];
 	}
 	else
 	{
