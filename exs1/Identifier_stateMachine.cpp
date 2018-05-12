@@ -110,6 +110,12 @@ void Identifier_StateMachine::init()
 
 /**
     Identifier状态机解析
+    Identifier 只起到识别单词的作用：解析的结果可能是Identifier或是关键字
+
+    在关键字状态机函数中判断解析出的单词是Identifier，还是关键字
+
+    @return result 有效的返回：识别出的单词
+
 */
 Result Identifier_StateMachine::identifier_recognize(std::string str)
 {
@@ -142,14 +148,14 @@ Result Identifier_StateMachine::identifier_recognize(std::string str)
 	Result output;
 	if (!i)
 	{
-	    output.str_len = -1;
-		output.ID = -1;
-		output.opt_str = "Illegal string!";
+	    output.str_len = 1;
+		output.ID = ILLEGAL_STRING;
+		output.opt_str = str[0];
 	}
 	else
 	{
 	    output.str_len = i;
-		output.ID = VARIABLE_STATEMACHINE;
+		output.ID = IDENTIFIER_STATEMACHINE;
 		output.opt_str = res;
 	}
 
