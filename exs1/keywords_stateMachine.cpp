@@ -7,6 +7,24 @@ keywords_StateMachine::keywords_StateMachine() {}
 */
 void keywords_StateMachine::init()
 {
+    kwd_mp["thread"] = THREAD;
+    kwd_mp["features"] = FEATURES;
+    kwd_mp["flows"] = FLOWS;
+    kwd_mp["properties"] = PROPERTIES;
+    kwd_mp["end"] = END;
+    kwd_mp["none"] = NONE;
+    kwd_mp["in"] = IN;
+    kwd_mp["out"] = OUT;
+    kwd_mp["data"] = DATA;
+    kwd_mp["port"] = PORT;
+    kwd_mp["event"] = EVENT;
+    kwd_mp["parameter"] = PARAMETER;
+    kwd_mp["flow"] = FLOW;
+    kwd_mp["source"] = SOURCE;
+    kwd_mp["sink"] = SINK;
+    kwd_mp["path"] = PATH;
+    kwd_mp["constant"] = CONSTANT;
+    kwd_mp["access"] = ACCESS;
 }
 
 /**
@@ -37,8 +55,9 @@ Result keywords_StateMachine::keywords_recognize(std::string str)
     // 判断Identifier解析得到的单词
     if (key_words.count(str) > 0)
     {
+
         // 解析得到的是关键字
-        result.ID = KEYWORDS_STATEMACHINE;
+        result.ID = kwd_mp[str];
         result.opt_str = str;
         result.str_len = str.length();
     }

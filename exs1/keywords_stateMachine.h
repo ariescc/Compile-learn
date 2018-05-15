@@ -8,6 +8,8 @@ public:
      "none",  "in",  "out",  "data",  "port",  "event",  "parameter",  "flow" ,  "source",
      "sink" ,  "path",  "constant" ,  "access"};
 
+    std::map<std::string, int> kwd_mp;
+
 	keywords_StateMachine();
 	void init();
 	Result keywords_recognize(std::string str);
