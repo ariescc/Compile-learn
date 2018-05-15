@@ -65,19 +65,19 @@ void initialize()
 	identifier_statemachine.init();
 	decimal_statemachine.init();
 	symbols_statemachine.init();
+	keywords_statemachine.init();
 }
 
 
 /**
     打印解析结果
+    @params ln 当前单词所在的代码行数
     @params id 解析出的词对应的类型ID
     @parmas res_str 解析出的词
 */
-void print(int id, std::string res_str)
+void print(int ln, int id, std::string res_str)
 {
-    std::cout << "ID: " << id << std::endl;
-    std::cout << "String output: " << res_str << std::endl;
-    std::cout << "================================================================================================================================" << std::endl;
+    std::cout << "line:" << ln << " " << id << " " << res_str << std::endl;
 }
 
 
@@ -94,7 +94,7 @@ int main()
 
 	while(getline(std::cin, input)) {
         // 代码行数处理
-        std::cout << "line " << line++ << " >> " << std::endl;
+        //std::cout << "line:" << line++ << " ";
 
         // 清除头部空格
         int c_index = 0;
@@ -119,7 +119,7 @@ int main()
             // 获得 a=b 字符串，需要将此字符串解析到为0为止，或者所有的状态机都无法解析为止
             while (true)
             {
-                std::cout << "input: " << input_cur << std::endl;
+                //std::cout << "input: " << input_cur << std::endl;
 
                 Result output;
 
@@ -131,7 +131,7 @@ int main()
 
                     // 判断Identifier解析出的单词是关键字还是Identifier
                     output = keywords_statemachine.keywords_recognize(word);
-                    print(output.ID, output.opt_str);
+                    print(line, output.ID, output.opt_str);
 
                     // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
                     if (output.str_len < input_cur.length())
@@ -149,7 +149,7 @@ int main()
                 // 符号解析
                 output = symbols_statemachine.symbols_recognize(input_cur);
                 if (output.ID != ILLEGAL_STRING) {
-                    print(output.ID, output.opt_str);
+                    print(line, output.ID, output.opt_str);
                     // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
                     if (output.str_len < input_cur.length())
                     {
@@ -167,7 +167,7 @@ int main()
                 output = decimal_statemachine.decimal_recognize(input_cur);
                 if(output.ID != ILLEGAL_STRING)
                 {
-                    print(output.ID, output.opt_str);
+                    print(line, output.ID, output.opt_str);
                     // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
                     if (output.str_len < input_cur.length())
                     {
@@ -182,7 +182,7 @@ int main()
                 }
                 else{
                     // 所有状态机都无法解析了，则停止对当前字符串的解析，继续读取
-                    print(output.ID, output.opt_str);
+                    print(line, output.ID, output.opt_str);
                     if (output.str_len < input_cur.length())
                     {
                         input_cur = input_cur.substr(output.str_len);
@@ -197,6 +197,7 @@ int main()
             }
         }
 
+        line++;
 
 	}
 
