@@ -11,7 +11,7 @@
 
 1525952650 q:\ariescc\compile-learn\exs1\relation.h
 
-1526113392 q:\ariescc\compile-learn\exs1\resource.h
+1526305367 q:\ariescc\compile-learn\exs1\resource.h
 	"relation.h"
 	"result.h"
 	<stdio.h>
@@ -35,16 +35,16 @@
 1525955809 source:q:\ariescc\compile-learn\exs1\statemachine.cpp
 	"StateMachine.h"
 
-1526113650 source:q:\ariescc\compile-learn\exs1\main.cpp
+1526350699 source:q:\ariescc\compile-learn\exs1\main.cpp
 	"Identifier_stateMachine.h"
 	"keywords_stateMachine.h"
 	"symbols_stateMachine.h"
 	"Decimal_StateMachine.h"
 
-1526113290 source:q:\ariescc\compile-learn\exs1\keywords_statemachine.cpp
+1526311680 source:q:\ariescc\compile-learn\exs1\keywords_statemachine.cpp
 	"keywords_stateMachine.h"
 
-1526111387 q:\ariescc\compile-learn\exs1\keywords_statemachine.h
+1526310757 q:\ariescc\compile-learn\exs1\keywords_statemachine.h
 	"StateMachine.h"
 
 1526115653 source:q:\ariescc\compile-learn\exs1\symbols_statemachine.cpp
