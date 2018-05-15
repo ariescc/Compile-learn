@@ -1,0 +1,70 @@
+# depslib dependency file v1.0
+1526352894 source:q:\ariescc\compile-learn\kylecompiler\decimal_statemachine.cpp
+	"Decimal_StateMachine.h"
+
+1526352911 q:\ariescc\compile-learn\kylecompiler\decimal_statemachine.h
+	"StateMachine.h"
+
+1526355553 q:\ariescc\compile-learn\kylecompiler\statemachine.h
+	"relation.h"
+	"resource.h"
+
+1526355441 q:\ariescc\compile-learn\kylecompiler\relation.h
+
+1526354956 q:\ariescc\compile-learn\kylecompiler\resource.h
+	"relation.h"
+	"wordAnalyse_result.h"
+	<stdio.h>
+	<iostream>
+	<string>
+	<map>
+	<set>
+	<vector>
+
+1526355537 q:\ariescc\compile-learn\kylecompiler\wordanalyse_result.h
+	<string>
+
+1526352758 source:q:\ariescc\compile-learn\kylecompiler\identifier_statemachine.cpp
+	"Identifier_stateMachine.h"
+
+1526355492 q:\ariescc\compile-learn\kylecompiler\identifier_statemachine.h
+	"StateMachine.h"
+
+1526352832 source:q:\ariescc\compile-learn\kylecompiler\keywords_statemachine.cpp
+	"keywords_stateMachine.h"
+
+1526352796 q:\ariescc\compile-learn\kylecompiler\keywords_statemachine.h
+	"StateMachine.h"
+
+1526368094 source:q:\ariescc\compile-learn\kylecompiler\main.cpp
+	<iostream>
+	<stdio.h>
+	"Word_Analyser.h"
+
+1526351980 source:q:\ariescc\compile-learn\kylecompiler\relation.cpp
+	"relation.h"
+
+1526352098 source:q:\ariescc\compile-learn\kylecompiler\resource.cpp
+
+1526352477 source:q:\ariescc\compile-learn\kylecompiler\statemachine.cpp
+	"StateMachine.h"
+
+1526352692 source:q:\ariescc\compile-learn\kylecompiler\symbols_statemachine.cpp
+	"symbols_stateMachine.h"
+
+1526352539 q:\ariescc\compile-learn\kylecompiler\symbols_statemachine.h
+	"StateMachine.h"
+
+1526352407 source:q:\ariescc\compile-learn\kylecompiler\wordanalyse_result.cpp
+	"wordAnalyse_Result.h"
+
+1526367822 source:q:\ariescc\compile-learn\kylecompiler\word_analyser.cpp
+	"Word_Analyser.h"
+	<stdio.h>
+
+1526367641 q:\ariescc\compile-learn\kylecompiler\word_analyser.h
+	"Identifier_stateMachine.h"
+	"keywords_stateMachine.h"
+	"symbols_stateMachine.h"
+	"Decimal_StateMachine.h"
+
