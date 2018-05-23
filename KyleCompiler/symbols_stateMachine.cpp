@@ -217,8 +217,17 @@ WordAnalyse_Result symbols_StateMachine::public_recognize(std::map<int, bool>& i
 	}
 	else
 	{
+	        // "=>", "+=>", ";", ":", "::", "{", "}", "->"
+        if(res == ";") output.ID = FEN;
+        else if(res == "+=>") output.ID = PLUS_EQUAL_GREATER;
+        else if(res == "=>") output.ID = EQUAL_GREATER;
+        else if(res == ":") output.ID = MAO;
+        else if(res == "::") output.ID = TWO_MAO;
+        else if(res == "{") output.ID = LEFT_HUA_KH;
+        else if(res == "}") output.ID = RIGHT_HUA_KH;
+        else if(res == "->") output.ID = MISE_GREARER;
 	    output.str_len = i;
-		output.ID = SYMBOLS_STATEMACHINE;
+		//output.ID = SYMBOLS_STATEMACHINE;
 		output.opt_str = res;
 	}
 
