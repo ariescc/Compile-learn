@@ -11,7 +11,7 @@
 
 1526355441 q:\ariescc\compile-learn\kylecompiler\relation.h
 
-1526354956 q:\ariescc\compile-learn\kylecompiler\resource.h
+1527041477 q:\ariescc\compile-learn\kylecompiler\resource.h
 	"relation.h"
 	"wordAnalyse_result.h"
 	<stdio.h>
@@ -20,6 +20,7 @@
 	<map>
 	<set>
 	<vector>
+	<queue>
 
 1526355537 q:\ariescc\compile-learn\kylecompiler\wordanalyse_result.h
 	<string>
@@ -36,10 +37,11 @@
 1526352796 q:\ariescc\compile-learn\kylecompiler\keywords_statemachine.h
 	"StateMachine.h"
 
-1526368094 source:q:\ariescc\compile-learn\kylecompiler\main.cpp
+1527087310 source:q:\ariescc\compile-learn\kylecompiler\main.cpp
 	<iostream>
 	<stdio.h>
 	"Word_Analyser.h"
+	"Parser.h"
 
 1526351980 source:q:\ariescc\compile-learn\kylecompiler\relation.cpp
 	"relation.h"
@@ -49,7 +51,7 @@
 1526352477 source:q:\ariescc\compile-learn\kylecompiler\statemachine.cpp
 	"StateMachine.h"
 
-1526352692 source:q:\ariescc\compile-learn\kylecompiler\symbols_statemachine.cpp
+1527081853 source:q:\ariescc\compile-learn\kylecompiler\symbols_statemachine.cpp
 	"symbols_stateMachine.h"
 
 1526352539 q:\ariescc\compile-learn\kylecompiler\symbols_statemachine.h
@@ -58,13 +60,22 @@
 1526352407 source:q:\ariescc\compile-learn\kylecompiler\wordanalyse_result.cpp
 	"wordAnalyse_Result.h"
 
-1526367822 source:q:\ariescc\compile-learn\kylecompiler\word_analyser.cpp
+1527044710 source:q:\ariescc\compile-learn\kylecompiler\word_analyser.cpp
 	"Word_Analyser.h"
 	<stdio.h>
 
-1526367641 q:\ariescc\compile-learn\kylecompiler\word_analyser.h
+1527044702 q:\ariescc\compile-learn\kylecompiler\word_analyser.h
 	"Identifier_stateMachine.h"
 	"keywords_stateMachine.h"
 	"symbols_stateMachine.h"
 	"Decimal_StateMachine.h"
+
+1527063670 q:\ariescc\compile-learn\kylecompiler\parser.h
+	"resource.h"
+	"TreeNode.h"
+
+1526997409 q:\ariescc\compile-learn\kylecompiler\treenode.h
+
+1527087087 source:q:\ariescc\compile-learn\kylecompiler\parser.cpp
+	"Parser.h"
 

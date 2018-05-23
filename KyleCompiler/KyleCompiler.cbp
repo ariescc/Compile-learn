@@ -32,7 +32,28 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Decimal_stateMachine.cpp" />
+		<Unit filename="Decimal_stateMachine.h" />
+		<Unit filename="Identifier_stateMachine.cpp" />
+		<Unit filename="Identifier_stateMachine.h" />
+		<Unit filename="Parser.cpp" />
+		<Unit filename="Parser.h" />
+		<Unit filename="StateMachine.cpp" />
+		<Unit filename="StateMachine.h" />
+		<Unit filename="TreeNode.h" />
+		<Unit filename="Word_Analyser.cpp" />
+		<Unit filename="Word_Analyser.h" />
+		<Unit filename="keywords_stateMachine.cpp" />
+		<Unit filename="keywords_stateMachine.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="relation.cpp" />
+		<Unit filename="relation.h" />
+		<Unit filename="resource.cpp" />
+		<Unit filename="resource.h" />
+		<Unit filename="symbols_stateMachine.cpp" />
+		<Unit filename="symbols_stateMachine.h" />
+		<Unit filename="wordAnalyse_result.cpp" />
+		<Unit filename="wordAnalyse_result.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
