@@ -38,5 +38,8 @@ int main()
     treeNode * root = parser.parser_solve();
     //std::cout << root << std::endl;
 
+    // µİ¹é´òÓ¡Óï·¨Ê÷£¨ºóĞò±éÀú
+    parser.print_parser_tree(root);
+
     return 0;
 }
