@@ -89,6 +89,7 @@ std::vector<WordAnalyse_Result> Word_Analyser::GetWordList(std::string input, in
             output = identifier_statemachine.identifier_recognize(input_cur);
             if (output.ID != ILLEGAL_STRING)
             {
+                std::cout << "sb" << std::endl;
                 std::string word = output.opt_str;
 
                 // 判断Identifier解析出的单词是关键字还是Identifier
@@ -111,7 +112,11 @@ std::vector<WordAnalyse_Result> Word_Analyser::GetWordList(std::string input, in
 
             // 符号解析
             output = symbols_statemachine.symbols_recognize(input_cur);
+            std::cout << "symbols" << std::endl;
+            std::cout << output.ID << std::endl;
+            std::cout << output.opt_str << std::endl;
             if (output.ID != ILLEGAL_STRING) {
+                std::cout << "qb" << std::endl;
                 wordanalyse_results.push_back(output);
                 // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
                 if (output.str_len < input_cur.length())
@@ -128,8 +133,12 @@ std::vector<WordAnalyse_Result> Word_Analyser::GetWordList(std::string input, in
 
             // 浮点数解析
             output = decimal_statemachine.decimal_recognize(input_cur);
+            std::cout << "decimal" << std::endl;
+            std::cout << output.ID << std::endl;
+            std::cout << output.opt_str << std::endl;
             if(output.ID != ILLEGAL_STRING)
             {
+                std::cout << "2b" << std::endl;
                 wordanalyse_results.push_back(output);
                 // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
                 if (output.str_len < input_cur.length())
