@@ -132,21 +132,19 @@ WordAnalyse_Result Identifier_StateMachine::identifier_recognize(std::string str
 		relation.state = state;
 		relation.ch = curCh;
 
-		state = mp[relation];
-
-
-		if (!state)
+		if (!mp[relation])
 		{
-			state = 4;
 			break;
 		}
+
+		state = mp[relation];
 		curCh = str[++i];
 	}
 
 	res = str.substr(0, i);
 
 	WordAnalyse_Result output;
-	if (!i)
+	if (state != 3 && state != 2)
 	{
 	    output.str_len = 1;
 		output.ID = ILLEGAL_STRING;
