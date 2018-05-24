@@ -212,11 +212,14 @@ WordAnalyse_Result symbols_StateMachine::public_recognize(std::map<int, bool>& i
 	if (!i)
 	{
 	    output.str_len = 1;
-		output.ID = -1;
+		output.ID = ILLEGAL_STRING;
 		output.opt_str = "Illegal string!";
 	}
 	else
 	{
+	    output.str_len = i;
+		//output.ID = SYMBOLS_STATEMACHINE;
+		output.opt_str = res;
 	        // "=>", "+=>", ";", ":", "::", "{", "}", "->"
         if(res == ";") output.ID = FEN;
         else if(res == "+=>") output.ID = PLUS_EQUAL_GREATER;
@@ -226,9 +229,12 @@ WordAnalyse_Result symbols_StateMachine::public_recognize(std::map<int, bool>& i
         else if(res == "{") output.ID = LEFT_HUA_KH;
         else if(res == "}") output.ID = RIGHT_HUA_KH;
         else if(res == "->") output.ID = MISE_GREARER;
-	    output.str_len = i;
-		//output.ID = SYMBOLS_STATEMACHINE;
-		output.opt_str = res;
+        else {
+            output.ID = ILLEGAL_STRING;
+            output.str_len = 1;
+            output.opt_str = "Illegal string!";
+        }
+
 	}
 
 	//std::cout << output.ID << " " << output.opt_str << std:: endl;
@@ -243,7 +249,7 @@ WordAnalyse_Result symbols_StateMachine::public_recognize(std::map<int, bool>& i
 */
 WordAnalyse_Result symbols_StateMachine::symbols_recognize_set(std::string str)
 {
-    WordAnalyse_Result output;
+    /*WordAnalyse_Result output;
     if (symbols.count(str) > 0)
     {
         output.str_len = 1;
@@ -256,7 +262,7 @@ WordAnalyse_Result symbols_StateMachine::symbols_recognize_set(std::string str)
         output.ID = ILLEGAL_STRING;
         output.opt_str = str[0];
     }
-    return output;
+    return output;*/
 }
 
 
@@ -311,8 +317,8 @@ WordAnalyse_Result symbols_StateMachine::symbols_recognize(std::string str)
     符号集合判断
     ========================================================================================================================
     */
-    WordAnalyse_Result res_set = symbols_recognize_set(str);
-    WordAnalyse_Results.push_back(res_set);
+    //WordAnalyse_Result res_set = symbols_recognize_set(str);
+    //WordAnalyse_Results.push_back(res_set);
 
 
     /*
@@ -323,7 +329,7 @@ WordAnalyse_Result symbols_StateMachine::symbols_recognize(std::string str)
     bool flag = false; // 默认所有状态机都不能解析
     for (int i = 0; i < WordAnalyse_Results.size(); i++)
     {
-        if (WordAnalyse_Results[i].ID != -1)
+        if (WordAnalyse_Results[i].ID != ILLEGAL_STRING)
         {
             flag = true;
             return WordAnalyse_Results[i];
