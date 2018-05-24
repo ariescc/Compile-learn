@@ -265,7 +265,7 @@ treeNode * Parser::Association_parse()
         association_root -> child[4] = decimal;
         que.pop();
     }
-    else {std::cout << "syntax error: decimal" << std::endl; return nullptr;} // 因为前面部分已经匹配成功了，所以当此处无法
+    else {std::cout << que.front().opt_str << "syntax error: decimal" << std::endl; return nullptr;} // 因为前面部分已经匹配成功了，所以当此处无法
                                                                         // 进行匹配的时候语法分析错误
 
     return association_root;
@@ -617,7 +617,7 @@ treeNode * Parser::Splitter_parse()
         que.pop();
     }
 
-    else {std::cout << "syntax error: splitter" << std::endl; return nullptr;}
+    else {std::cout << que.front().opt_str <<"syntax error: splitter" << std::endl; return nullptr;}
 
     return splitter_root;
 }
