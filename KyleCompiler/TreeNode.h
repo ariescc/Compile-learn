@@ -8,7 +8,7 @@ struct treeNode {
     struct treeNode *child[MAXCHILD]; // 定义子节点
     struct treeNode *brother; // 兄弟节点指针
 
-    std::string data = "null";
+    std::string data;
 
     int line_no; // 行号
 };
