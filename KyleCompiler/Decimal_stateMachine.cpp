@@ -127,21 +127,20 @@ WordAnalyse_Result Decimal_StateMachine::decimal_recognize(std::string str)
 		relation.state = state;
 		relation.ch = curCh;
 
-		state = mp[relation];
-
 		// 如果映射状态不存在，默认map中为0
-		if (!state)
+		if (!mp[relation])
 		{
-			state = 6;
 			break;
 		}
+		state = mp[relation];
 		curCh = str[++i];
 	}
 
 	res = str.substr(0, i);
 
 	WordAnalyse_Result output;
-	if (!i)
+	std::cout << "i: " << i << std::endl;
+	if (state != 5)
 	{
 	    // 截掉一个错误字符
 	    output.str_len = 1;
