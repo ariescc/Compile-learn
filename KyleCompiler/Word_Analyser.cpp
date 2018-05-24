@@ -116,7 +116,7 @@ std::vector<WordAnalyse_Result> Word_Analyser::GetWordList(std::string input, in
             std::cout << output.ID << std::endl;
             std::cout << output.opt_str << std::endl;
             if (output.ID != ILLEGAL_STRING) {
-                std::cout << "qb" << std::endl;
+                output.line = ln;
                 wordanalyse_results.push_back(output);
                 // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
                 if (output.str_len < input_cur.length())
@@ -138,7 +138,7 @@ std::vector<WordAnalyse_Result> Word_Analyser::GetWordList(std::string input, in
             std::cout << output.opt_str << std::endl;
             if(output.ID != ILLEGAL_STRING)
             {
-                std::cout << "2b" << std::endl;
+                output.line = ln;
                 wordanalyse_results.push_back(output);
                 // 解析成功后，如果此字符串没有完全解析，将已经解析出来的字符串截掉，取后面部分
                 if (output.str_len < input_cur.length())
@@ -154,6 +154,7 @@ std::vector<WordAnalyse_Result> Word_Analyser::GetWordList(std::string input, in
             }
             else{
                 // 所有状态机都无法解析了，则停止对当前字符串的解析，继续读取
+                output.line = ln;
                 wordanalyse_results.push_back(output);
                 if (output.str_len < input_cur.length())
                 {
