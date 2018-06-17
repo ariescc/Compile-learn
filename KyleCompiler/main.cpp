@@ -9,7 +9,8 @@ int line = 1;
 int main()
 {
     #ifdef LOCAL
-    freopen("in.txt", "r", stdin);
+    freopen("test1.txt", "r", stdin);
+    //freopen("parser_result.txt", "w", stdout);
     #endif // LOCAL
 
     // ================================================================================================================================
@@ -27,6 +28,8 @@ int main()
     //word_analyser.print_word_result(); // 打印词法分析结果
 
     std::vector<WordAnalyse_Result> word_list = word_analyser.wordanalyse_results; // 词法分析输出，语法分析输入
+
+    std::cout << word_list.size() << std::endl;
 
     // ================================================================================================================================
     // 语法分析

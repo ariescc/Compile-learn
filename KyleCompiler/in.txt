@@ -1,8 +1,8 @@
-thread Thread3d
+thread Thread6
 features
-	AP_Position_Input : out data port Nav_Types1::Nav_Types2::Position_GPS {result1::result2 +=> constant access 50.0};
+	none;
 flows
-        flow1: flow sink signal {result1::result2 +=> constant access 50.0};
+        none;
 properties
-	size => constant access +50.0;
-end Thread3d;
+	none;
+end Thread6;

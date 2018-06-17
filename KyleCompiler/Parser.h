@@ -21,6 +21,8 @@ public:
 
     void print_parser_tree(treeNode *root); // 中序遍历打印语法树
 
+    void rescover_queue(std::queue<std::string> tmp, std::queue<std::string> global_que, int flag);
+
     // =========================================================================================================
     // 语法规则
     treeNode *Threadspec_parse(); // Threadspec

@@ -1,0 +1,20 @@
+bingo
+==============================Parser 1================================
+Queue size: 215
+
+bingo
+==============================Parser 2================================
+Queue size: 184
+
+bingo
+==============================Parser 3================================
+Queue size: 148
+
+bingo
+==============================Parser 4================================
+Queue size: 99
+
+syntax error: PortType
+syntax error: PortSpec fenhao
+parameter syntax error: IOtype
+; syntax error: end

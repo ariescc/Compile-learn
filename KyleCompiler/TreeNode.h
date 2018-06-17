@@ -2,7 +2,7 @@
     语法分析树的节点
 */
 
-#define MAXCHILD 5
+#define MAXCHILD 10
 
 struct treeNode {
     struct treeNode *child[MAXCHILD]; // 定义子节点
