@@ -46,7 +46,7 @@ std::vector<std::string> Word_Analyser::SplitString(const std::string& s, const 
 void Word_Analyser::print_word_result()
 {
     #ifdef LOCAL
-    freopen("output_word_result.txt", "w", stdout);
+    freopen("tokenOut.txt", "w", stdout);
     #endif // LOCAL
 
     for (int i = 0; i < wordanalyse_results.size(); i++)
@@ -89,7 +89,7 @@ std::vector<WordAnalyse_Result> Word_Analyser::GetWordList(std::string input, in
             output = identifier_statemachine.identifier_recognize(input_cur);
             if (output.ID != ILLEGAL_STRING)
             {
-                std::cout << "sb" << std::endl;
+//                std::cout << "sb" << std::endl;
                 std::string word = output.opt_str;
 
                 // 判断Identifier解析出的单词是关键字还是Identifier
@@ -112,9 +112,9 @@ std::vector<WordAnalyse_Result> Word_Analyser::GetWordList(std::string input, in
 
             // 符号解析
             output = symbols_statemachine.symbols_recognize(input_cur);
-            std::cout << "symbols" << std::endl;
-            std::cout << output.ID << std::endl;
-            std::cout << output.opt_str << std::endl;
+//            std::cout << "symbols" << std::endl;
+//            std::cout << output.ID << std::endl;
+//            std::cout << output.opt_str << std::endl;
             if (output.ID != ILLEGAL_STRING) {
                 output.line = ln;
                 wordanalyse_results.push_back(output);
@@ -133,9 +133,9 @@ std::vector<WordAnalyse_Result> Word_Analyser::GetWordList(std::string input, in
 
             // 浮点数解析
             output = decimal_statemachine.decimal_recognize(input_cur);
-            std::cout << "decimal" << std::endl;
-            std::cout << output.ID << std::endl;
-            std::cout << output.opt_str << std::endl;
+//            std::cout << "decimal" << std::endl;
+//            std::cout << output.ID << std::endl;
+//            std::cout << output.opt_str << std::endl;
             if(output.ID != ILLEGAL_STRING)
             {
                 output.line = ln;

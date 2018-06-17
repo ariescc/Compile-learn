@@ -139,7 +139,7 @@ WordAnalyse_Result Decimal_StateMachine::decimal_recognize(std::string str)
 	res = str.substr(0, i);
 
 	WordAnalyse_Result output;
-	std::cout << "i: " << i << std::endl;
+	//std::cout << "i: " << i << std::endl;
 	if (state != 5)
 	{
 	    // ½ØµôÒ»¸ö´íÎó×Ö·û
