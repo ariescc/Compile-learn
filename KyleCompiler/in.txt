@@ -1,8 +1,0 @@
-thread Thread6
-features
-	none;
-flows
-        none;
-properties
-	none;
-end Thread6;

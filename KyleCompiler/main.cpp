@@ -10,7 +10,7 @@ int main()
 {
     #ifdef LOCAL
     freopen("test1.txt", "r", stdin);
-    //freopen("parser_result.txt", "w", stdout);
+    freopen("SyntaxOut.txt", "w", stdout);
     #endif // LOCAL
 
     // ================================================================================================================================
