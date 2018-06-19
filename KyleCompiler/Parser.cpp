@@ -749,7 +749,8 @@ void Parser::print_parser_tree(treeNode *root, int cnt)
     int sons = 0; // 计算当前节点子节点数量
 
     // 格式化输出制表符
-    for(int i = 0; i < cnt; i++) std::cout << "  ";
+    for(int i = 0; i < cnt; i++) std::cout << "----";
+    std::cout << '|';
 
     std::cout << root -> data << " " << std::endl;
     //std::cout << "======sons======" << std::endl;
