@@ -29,7 +29,7 @@ int main()
 
     std::vector<WordAnalyse_Result> word_list = word_analyser.wordanalyse_results; // 词法分析输出，语法分析输入
 
-    std::cout << word_list.size() << std::endl;
+    // std::cout << word_list.size() << std::endl;
 
     // ================================================================================================================================
     // 语法分析
@@ -42,7 +42,7 @@ int main()
     //std::cout << root << std::endl;
 
     // 递归打印语法树（后序遍历
-    parser.print_parser_tree(root);
+    parser.print_parser_tree(root, 0);
 
     return 0;
 }

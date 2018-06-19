@@ -11,6 +11,7 @@ public:
     std::queue<WordAnalyse_Result> que;
     int package_identifier_cnt = 0; // packageName 最后多余的identifer个数，即最后一个::后面identifer的个数
                                 // 作为全局变量，使reference和package均能访问到此变量的值
+    int indent = 0; // 格式化输出空格数
 
     Parser(); // 构造函数
 
@@ -19,7 +20,7 @@ public:
     void init(std::vector<WordAnalyse_Result> v); // 初始化词法队列
     bool Match(int id); // 匹配终结符，为终结符创建一个树节点并返回
 
-    void print_parser_tree(treeNode *root); // 中序遍历打印语法树
+    void print_parser_tree(treeNode *root, int cnt); // 中序遍历打印语法树
 
     void rescover_queue(std::queue<std::string> tmp, std::queue<std::string> global_que, int flag);
 

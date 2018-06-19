@@ -81,7 +81,7 @@ treeNode * Parser::Threadspec_parse()
         }
     }
 
-    std::cout << que.front().opt_str << std::endl;
+    //std::cout << que.front().opt_str << std::endl;
 
     // if-match flows
     if(que.front().ID == FLOWS) {
@@ -98,9 +98,12 @@ treeNode * Parser::Threadspec_parse()
     if(que.front().ID == PROPERTIES) {
         que.pop();
         if(thread != nullptr) {
+            treeNode *properties_node = new treeNode();
+            properties_node -> data = "properties";
             treeNode *association_node = Association_parse();
-            if(association_node != nullptr) {thread -> child[3] = association_node;}
-            else {std::cout << "Error in Association" << std::endl; return nullptr;}
+            if(association_node != nullptr) properties_node -> child[0] = association_node;
+            else {std::cout << "Error in Properties association" << std::endl; return nullptr;}
+            thread -> child[3] = properties_node;
         }
 
         // match ';'
@@ -166,6 +169,7 @@ treeNode * Parser::FeatureSpec_parse()
 
     // match :
     if(que.front().ID == MAO) que.pop();
+    else {std::cout << que.front().opt_str << "syntax error: FeatureSpec MAO" << std::endl; return nullptr;}
 
     // IOtype 语法规则
     if(features_root != nullptr) {
@@ -180,22 +184,16 @@ treeNode * Parser::FeatureSpec_parse()
         // ParamterSpec 语法规则
         treeNode *parameterSpec_node = ParameterSpec_parse();
         if(parameterSpec_node != nullptr) {
-            features_root -> data = "ParameterSpec";
-            return (features_root -> child[2] = parameterSpec_node);
+            features_root -> child[2] = parameterSpec_node;
         }
     }
     else {
         // PortSpec 语法规则
         treeNode *portSpec_node = PortSpec_parse();
         if(portSpec_node != nullptr) {
-            features_root -> data = "PortSpec";
-            return (features_root -> child[2] = portSpec_node);
+            features_root -> child[2] = portSpec_node;
         }
     }
-
-    // match ;
-    if(que.front().ID == FEN) que.pop();
-    else {std::cout << "syntax error: FeatureSpec Fen" << std::endl; return nullptr;}
 
     return features_root;
 }
@@ -307,20 +305,19 @@ treeNode * Parser::FlowSpec_parse()
 treeNode * Parser::Association_parse()
 {
     treeNode *association_root = new treeNode();
-
     //std::cout << que.front().opt_str << "sadfadf" << std::endl;
 
     // match identifier
     if(que.front().ID != IDENTIFIER_STATEMACHINE) {
         // match none
         if(que.front().ID == NONE) {
-            std::cout << "yes" << std::endl;
+            //std::cout << "yes" << std::endl;
             association_root -> data = "None";
             que.pop();
             return association_root;
         }
         else {
-            std::cout << "syntax error: Association NONE" << std::endl;
+            std::cout << que.front().opt_str << "syntax error: Association NONE" << std::endl;
             return nullptr;
         }
         return association_root;
@@ -443,7 +440,7 @@ treeNode * Parser::ParameterSpec_parse()
     while(que.front().ID == LEFT_HUA_KH) {
         que.pop();
         treeNode *association_node = Association_parse();
-        if(association_node != nullptr) parameterSpec_root -> child[i++] = Association_parse();
+        if(association_node != nullptr) parameterSpec_root -> child[i++] = association_node;
         else {std::cout << "syntax error: Parameter association" << std::endl; return nullptr;}
         if(que.front().ID == RIGHT_HUA_KH) que.pop();
         else {std::cout << "syntax error: parameter association" << std::endl; return nullptr;}
@@ -610,8 +607,12 @@ treeNode * Parser::Reference_parse()
         i = i + 2;
 
         id1 = que.front().ID;
-        if(id1 == IDENTIFIER_STATEMACHINE) package_identifier_cnt++;
+        if(id1 == IDENTIFIER_STATEMACHINE) {
+            str1 = que.front().opt_str;
+            package_identifier_cnt++;
+        }
         que.pop();
+
         id2 = que.front().ID;
         if(id2 == TWO_MAO) {que.pop(); package_identifier_cnt--;}
     }
@@ -625,7 +626,12 @@ treeNode * Parser::Reference_parse()
     // match identifier
     // 多于1个identifier
     //std::cout << "cnt => " << cnt << std::endl;
-    if(package_identifier_cnt == 1) package_identifier_cnt = 0; // match identifer
+    if(package_identifier_cnt == 1) {
+        treeNode *identifier = new treeNode();
+        identifier -> data = str1;
+        packagename_root -> child[i] = identifier;
+        package_identifier_cnt = 0; // match identifer
+    }
     else {std::cout << "syntax error: reference identifer" << std::endl; return nullptr;}
 
     return packagename_root;
@@ -737,10 +743,14 @@ treeNode * Parser::Splitter_parse()
 /**
     先序遍历打印语法树
 */
-void Parser::print_parser_tree(treeNode *root)
+void Parser::print_parser_tree(treeNode *root, int cnt)
 {
     int flag = 0;
     int sons = 0; // 计算当前节点子节点数量
+
+    // 格式化输出制表符
+    for(int i = 0; i < cnt; i++) std::cout << "  ";
+
     std::cout << root -> data << " " << std::endl;
     //std::cout << "======sons======" << std::endl;
     for(int i = 0; i < MAXCHILD; i++) {
@@ -749,10 +759,10 @@ void Parser::print_parser_tree(treeNode *root)
             sons++;
             flag = 1;
             //std::cout << root -> child[i] -> data << std::endl;
-            print_parser_tree(root -> child[i]);
+            print_parser_tree(root -> child[i], cnt + 1);
         }
     }
-    std::cout << root -> data << "的子节点数量： " << sons << std::endl;
+    //std::cout << root -> data << "的子节点数量： " << sons << std::endl;
     // 子节点均为空，将该节点的值打印出来，否则继续递归
     if(!flag) {
         //std::cout << "******grandson*******" << std::endl;
@@ -774,14 +784,17 @@ treeNode* Parser::parser_solve()
     int i = 0;
     int cnt = 0;
     while(!que.empty()) {
-        std::cout << "bingo" << std::endl;
+        // std::cout << "bingo" << std::endl;
         cnt++;
-        std::cout << "==============================Parser " << cnt << "================================" << std::endl;
-        std::cout << "Queue size: " << que.size() << "\n" << std::endl;
+        // std::cout << "Queue size: " << que.size() << "\n" << std::endl;
         treeNode * tmp = Threadspec_parse();
-        if(tmp == nullptr) return nullptr;
+        if(tmp == nullptr) {
+            std::cout << "****************************Parser " << cnt << " unsuccessfully************************" << std::endl;
+            return nullptr;
+        }
+        std::cout << "==============================Parser " << cnt << " successfully============================" << std::endl;
         root -> child[i++] = tmp;
-        std::cout << "==============================================================" << std::endl;
+        // std::cout << "==============================================================" << std::endl;
     }
     return root;
 }
